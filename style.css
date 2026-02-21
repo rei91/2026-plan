@@ -111,7 +111,7 @@ header h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
+  width: 80px;
   height: 28px;
   background: rgba(255, 255, 255, 0.25);
   border-radius: 99px;
@@ -139,7 +139,7 @@ header h1 {
 }
 
 .theme-switch input:checked + .theme-slider::before {
-  transform: translateX(32px);
+  transform: translateX(52px);
 }
 
 /* ===== Main Layout ===== */
