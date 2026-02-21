@@ -229,6 +229,52 @@ section h2 {
   color: #ef4444;
 }
 
+/* ===== Priority Badges ===== */
+.priority-badge {
+  font-size: 0.65rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.priority-high {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.priority-medium {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.priority-low {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.task-item.completed .priority-badge {
+  opacity: 0.4;
+}
+
+.task-priority-select {
+  width: 110px;
+  flex: none !important;
+  padding: 0.45rem 0.4rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  outline: none;
+  background: white;
+  cursor: pointer;
+}
+
+.task-priority-select:focus {
+  border-color: #1a3f6b;
+}
+
 /* ===== Due Dates ===== */
 .task-due {
   font-size: 0.75rem;

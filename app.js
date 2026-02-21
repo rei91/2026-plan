@@ -45,18 +45,27 @@ function renderObjectives() {
     const doneTasks = obj.tasks.filter((t) => t.done).length;
     const progress = totalTasks > 0 ? Math.round((doneTasks / totalTasks) * 100) : 0;
 
-    const tasksHTML = obj.tasks
+    // Sort tasks: high priority first, then medium, then low/none — completed sink to bottom
+    const sortedTasks = obj.tasks
+      .map((task, originalIndex) => ({ ...task, originalIndex }))
+      .sort((a, b) => {
+        if (a.done !== b.done) return a.done ? 1 : -1;
+        return (priorityOrder(a.priority) - priorityOrder(b.priority));
+      });
+
+    const tasksHTML = sortedTasks
       .map(
-        (task, taskIndex) => `
+        (task) => `
         <li class="task-item ${task.done ? "completed" : ""} ${getDueClass(task)}">
           <input
             type="checkbox"
             ${task.done ? "checked" : ""}
-            onchange="toggleTask(${objIndex}, ${taskIndex})"
+            onchange="toggleTask(${objIndex}, ${task.originalIndex})"
           >
+          ${task.priority ? `<span class="priority-badge priority-${task.priority}">${task.priority}</span>` : ""}
           <span>${escapeHTML(task.text)}</span>
           ${task.dueDate ? `<span class="task-due ${getDueClass(task)}">${formatDate(task.dueDate)}</span>` : ""}
-          <button class="delete-task" onclick="deleteTask(${objIndex}, ${taskIndex})" title="Delete task">&times;</button>
+          <button class="delete-task" onclick="deleteTask(${objIndex}, ${task.originalIndex})" title="Delete task">&times;</button>
         </li>
       `
       )
@@ -78,6 +87,12 @@ function renderObjectives() {
         <ul class="task-list">${tasksHTML}</ul>
         <form class="add-task-form" onsubmit="addTask(event, ${objIndex})">
           <input type="text" placeholder="Add a task..." required>
+          <select class="task-priority-select" title="Priority">
+            <option value="">No priority</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
           <input type="date" class="task-date-input" title="Due date (optional)">
           <button type="submit">+ Task</button>
         </form>
@@ -127,9 +142,13 @@ function addTask(event, objIndex) {
 
   if (!text) return;
 
-  objectives[objIndex].tasks.push({ text, done: false, dueDate });
+  const prioritySelect = event.target.querySelector("select");
+  const priority = prioritySelect.value || null;
+
+  objectives[objIndex].tasks.push({ text, done: false, dueDate, priority });
   textInput.value = "";
   dateInput.value = "";
+  prioritySelect.value = "";
   render();
 }
 
@@ -164,6 +183,14 @@ function getDueClass(task) {
   if (diffDays < 0) return "overdue";
   if (diffDays <= 2) return "due-soon";
   return "";
+}
+
+// Returns sort order for priorities (lower = higher priority)
+function priorityOrder(priority) {
+  if (priority === "high") return 0;
+  if (priority === "medium") return 1;
+  if (priority === "low") return 2;
+  return 3;
 }
 
 // Formats a date string like "2026-03-15" into "Mar 15"
