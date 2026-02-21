@@ -1,0 +1,304 @@
+/* ===== Reset & Base ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Söhne", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  background: #f0f2f5;
+  color: #1a1a2e;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ===== Header ===== */
+header {
+  background: linear-gradient(135deg, #0f2b46, #1a3f6b);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  opacity: 0.85;
+  margin-top: 0.25rem;
+}
+
+/* ===== Main Layout ===== */
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ===== Sections ===== */
+section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+/* ===== Stats Cards ===== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.stat-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stat-number {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a3f6b;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ===== Progress Bar ===== */
+.overall-progress {
+  margin-top: 1rem;
+}
+
+.progress-bar {
+  background: #e5e7eb;
+  border-radius: 99px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, #1a3f6b, #2a5a9a);
+  height: 100%;
+  border-radius: 99px;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+/* ===== Form ===== */
+#objective-form {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+#objective-form input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#objective-form input:focus {
+  border-color: #1a3f6b;
+}
+
+#objective-form button {
+  padding: 0.6rem 1.2rem;
+  background: #1a3f6b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#objective-form button:hover {
+  background: #0f2b46;
+}
+
+/* ===== Objectives ===== */
+.objective-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.objective-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.objective-header h3 {
+  font-size: 1.05rem;
+  color: #1f2937;
+}
+
+.objective-description {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 0.75rem;
+}
+
+.objective-progress {
+  margin-bottom: 0.75rem;
+}
+
+.objective-progress .progress-bar {
+  height: 6px;
+}
+
+.progress-text {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 0.25rem;
+}
+
+/* ===== Tasks ===== */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+}
+
+.task-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #1a3f6b;
+  cursor: pointer;
+}
+
+.task-item span {
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+.task-item.completed span {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.task-item .delete-task {
+  background: none;
+  border: none;
+  color: #d1d5db;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0 0.25rem;
+  transition: color 0.2s;
+}
+
+.task-item .delete-task:hover {
+  color: #ef4444;
+}
+
+/* ===== Add Task Form ===== */
+.add-task-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.add-task-form input {
+  flex: 1;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.add-task-form input:focus {
+  border-color: #1a3f6b;
+}
+
+.add-task-form button {
+  padding: 0.45rem 0.9rem;
+  background: #d6e4f5;
+  color: #0f2b46;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.add-task-form button:hover {
+  background: #b8d0eb;
+}
+
+/* ===== Delete Objective ===== */
+.delete-objective {
+  background: none;
+  border: 1px solid #fecaca;
+  color: #ef4444;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background 0.2s;
+}
+
+.delete-objective:hover {
+  background: #fef2f2;
+}
+
+/* ===== Empty State ===== */
+.empty-message {
+  text-align: center;
+  color: #9ca3af;
+  padding: 2rem;
+  font-style: italic;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #objective-form {
+    flex-direction: column;
+  }
+
+  #objective-form input {
+    min-width: 100%;
+  }
+}

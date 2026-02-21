@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 Plan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>2026 Plan</h1>
+  </header>
+
+  <main>
+    <!-- Progress Overview -->
+    <section class="progress-overview">
+      <h2>Progress Overview</h2>
+      <div class="stats">
+        <div class="stat-card">
+          <span class="stat-number" id="total-objectives">0</span>
+          <span class="stat-label">Objectives</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" id="total-tasks">0</span>
+          <span class="stat-label">Total Tasks</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" id="completed-tasks">0</span>
+          <span class="stat-label">Completed</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" id="completion-rate">0%</span>
+          <span class="stat-label">Completion Rate</span>
+        </div>
+      </div>
+      <div class="overall-progress">
+        <div class="progress-bar">
+          <div class="progress-fill" id="overall-progress-fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Add Objective -->
+    <section class="add-objective">
+      <h2>Add New Objective</h2>
+      <form id="objective-form">
+        <input type="text" id="objective-title" placeholder="Objective title (e.g. Learn JavaScript)" required>
+        <input type="text" id="objective-description" placeholder="Short description (optional)">
+        <button type="submit">Add Objective</button>
+      </form>
+    </section>
+
+    <!-- Objectives List -->
+    <section class="objectives-list">
+      <h2>My Objectives</h2>
+      <div id="objectives-container">
+        <p class="empty-message">No objectives yet. Add one above to get started!</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
