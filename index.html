@@ -11,9 +11,14 @@
     <div class="header-row">
       <h1>2026 Plan</h1>
       <div class="header-actions">
-        <button id="export-btn" class="header-btn" title="Export data">Export</button>
-        <button id="import-btn" class="header-btn" title="Import data">Import</button>
-        <input type="file" id="import-file" accept=".json" hidden>
+        <div class="dropdown">
+          <button class="header-btn dropdown-toggle" id="options-btn">Options ▾</button>
+          <div class="dropdown-menu" id="options-menu">
+            <button id="export-btn" class="dropdown-item">Export</button>
+            <button id="import-btn" class="dropdown-item">Import</button>
+            <input type="file" id="import-file" accept=".json" hidden>
+          </div>
+        </div>
         <label class="theme-switch" title="Toggle dark mode">
           <input type="checkbox" id="theme-toggle">
           <span class="theme-slider" id="theme-label">Dark</span>

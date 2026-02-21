@@ -312,6 +312,17 @@ function toggleTheme() {
 
 document.getElementById("theme-toggle").addEventListener("change", toggleTheme);
 
+// ===== Options Dropdown =====
+
+document.getElementById("options-btn").addEventListener("click", function (e) {
+  e.stopPropagation();
+  document.getElementById("options-menu").classList.toggle("open");
+});
+
+document.addEventListener("click", function () {
+  document.getElementById("options-menu").classList.remove("open");
+});
+
 // ===== Issue #7: Export / Import =====
 
 document.getElementById("export-btn").addEventListener("click", function () {
