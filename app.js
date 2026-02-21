@@ -298,23 +298,17 @@ document.querySelectorAll(".filter-btn").forEach((btn) => {
 function initTheme() {
   const saved = localStorage.getItem("theme") || "light";
   document.documentElement.setAttribute("data-theme", saved);
-  updateThemeButton(saved);
+  document.getElementById("theme-toggle").checked = saved === "dark";
 }
 
 function toggleTheme() {
-  const current = document.documentElement.getAttribute("data-theme");
-  const next = current === "light" ? "dark" : "light";
+  const toggle = document.getElementById("theme-toggle");
+  const next = toggle.checked ? "dark" : "light";
   document.documentElement.setAttribute("data-theme", next);
   localStorage.setItem("theme", next);
-  updateThemeButton(next);
 }
 
-function updateThemeButton(theme) {
-  const btn = document.getElementById("theme-toggle");
-  btn.textContent = theme === "light" ? "Dark" : "Light";
-}
-
-document.getElementById("theme-toggle").addEventListener("click", toggleTheme);
+document.getElementById("theme-toggle").addEventListener("change", toggleTheme);
 
 // ===== Issue #7: Export / Import =====
 
