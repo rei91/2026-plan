@@ -229,6 +229,37 @@ section h2 {
   color: #ef4444;
 }
 
+/* ===== Due Dates ===== */
+.task-due {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 99px;
+  background: #e5e7eb;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.task-due.due-soon {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.task-due.overdue {
+  background: #fee2e2;
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.task-item.completed .task-due {
+  opacity: 0.4;
+}
+
+.task-date-input {
+  width: 130px;
+  flex: none !important;
+  min-width: auto !important;
+}
+
 /* ===== Add Task Form ===== */
 .add-task-form {
   display: flex;

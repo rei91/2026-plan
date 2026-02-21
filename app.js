@@ -48,13 +48,14 @@ function renderObjectives() {
     const tasksHTML = obj.tasks
       .map(
         (task, taskIndex) => `
-        <li class="task-item ${task.done ? "completed" : ""}">
+        <li class="task-item ${task.done ? "completed" : ""} ${getDueClass(task)}">
           <input
             type="checkbox"
             ${task.done ? "checked" : ""}
             onchange="toggleTask(${objIndex}, ${taskIndex})"
           >
           <span>${escapeHTML(task.text)}</span>
+          ${task.dueDate ? `<span class="task-due ${getDueClass(task)}">${formatDate(task.dueDate)}</span>` : ""}
           <button class="delete-task" onclick="deleteTask(${objIndex}, ${taskIndex})" title="Delete task">&times;</button>
         </li>
       `
@@ -77,6 +78,7 @@ function renderObjectives() {
         <ul class="task-list">${tasksHTML}</ul>
         <form class="add-task-form" onsubmit="addTask(event, ${objIndex})">
           <input type="text" placeholder="Add a task..." required>
+          <input type="date" class="task-date-input" title="Due date (optional)">
           <button type="submit">+ Task</button>
         </form>
       </div>
@@ -118,13 +120,16 @@ function deleteObjective(index) {
 // Add a task to an objective
 function addTask(event, objIndex) {
   event.preventDefault();
-  const input = event.target.querySelector("input");
-  const text = input.value.trim();
+  const textInput = event.target.querySelector('input[type="text"]');
+  const dateInput = event.target.querySelector('input[type="date"]');
+  const text = textInput.value.trim();
+  const dueDate = dateInput.value || null;
 
   if (!text) return;
 
-  objectives[objIndex].tasks.push({ text, done: false });
-  input.value = "";
+  objectives[objIndex].tasks.push({ text, done: false, dueDate });
+  textInput.value = "";
+  dateInput.value = "";
   render();
 }
 
@@ -146,6 +151,25 @@ function escapeHTML(str) {
   const div = document.createElement("div");
   div.textContent = str;
   return div.innerHTML;
+}
+
+// Returns "overdue", "due-soon", or "" based on the task's due date
+function getDueClass(task) {
+  if (!task.dueDate || task.done) return "";
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const due = new Date(task.dueDate + "T00:00:00");
+  const diffDays = Math.ceil((due - today) / (1000 * 60 * 60 * 24));
+
+  if (diffDays < 0) return "overdue";
+  if (diffDays <= 2) return "due-soon";
+  return "";
+}
+
+// Formats a date string like "2026-03-15" into "Mar 15"
+function formatDate(dateStr) {
+  const date = new Date(dateStr + "T00:00:00");
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
 // ===== Initial Render =====
