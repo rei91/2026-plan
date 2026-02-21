@@ -56,13 +56,12 @@ function renderObjectives() {
     const tasksHTML = sortedTasks
       .map(
         (task) => `
-        <li class="task-item ${task.done ? "completed" : ""} ${getDueClass(task)}">
+        <li class="task-item ${task.done ? "completed" : ""} ${getDueClass(task)} ${task.priority ? "priority-" + task.priority : ""}">
           <input
             type="checkbox"
             ${task.done ? "checked" : ""}
             onchange="toggleTask(${objIndex}, ${task.originalIndex})"
           >
-          ${task.priority ? `<span class="priority-badge priority-${task.priority}">${task.priority}</span>` : ""}
           <span>${escapeHTML(task.text)}</span>
           ${task.dueDate ? `<span class="task-due ${getDueClass(task)}">${formatDate(task.dueDate)}</span>` : ""}
           <button class="delete-task" onclick="deleteTask(${objIndex}, ${task.originalIndex})" title="Delete task">&times;</button>
