@@ -299,6 +299,7 @@ function initTheme() {
   const saved = localStorage.getItem("theme") || "light";
   document.documentElement.setAttribute("data-theme", saved);
   document.getElementById("theme-toggle").checked = saved === "dark";
+  document.getElementById("theme-label").textContent = saved === "dark" ? "Light" : "Dark";
 }
 
 function toggleTheme() {
@@ -306,6 +307,7 @@ function toggleTheme() {
   const next = toggle.checked ? "dark" : "light";
   document.documentElement.setAttribute("data-theme", next);
   localStorage.setItem("theme", next);
+  document.getElementById("theme-label").textContent = next === "dark" ? "Light" : "Dark";
 }
 
 document.getElementById("theme-toggle").addEventListener("change", toggleTheme);
